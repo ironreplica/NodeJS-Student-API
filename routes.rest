@@ -1,0 +1,5 @@
+### Get tooele tech routes
+GET http://localhost:3000/ttech HTTP/1.1
+
+### Get the root path /
+GET http://localhost:3000/ HTTP/1.1
