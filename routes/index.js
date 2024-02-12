@@ -6,3 +6,5 @@ routes.get("/", myController.awesomeFunction);
 routes.get("/ttech", myController.tooeleTech);
 
 module.exports = routes;
+
+// check if stuff works
