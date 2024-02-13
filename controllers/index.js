@@ -9,6 +9,10 @@ const tooeleTech = (Req, res) => {
   res.send("Tooele Tech is Awesome!");
 };
 
+const additionalRoute = (req,res) => {
+  res.send("additional route");
+}
+
 const getAllStudents = async (req, res) => {
   try {
     const result = await mongodb.getDb().db().collection("students").find();
@@ -21,4 +25,4 @@ const getAllStudents = async (req, res) => {
   }
 };
 
-module.exports = { awesomeFunction, tooeleTech, getAllStudents };
+module.exports = { awesomeFunction, tooeleTech, getAllStudents, additionalRoute };
