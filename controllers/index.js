@@ -9,20 +9,20 @@ const tooeleTech = (req, res) => {
   res.send("Tooele Tech is Awesome!");
 };
 
-const additionalRoute = (req,res) => {
+const additionalRoute = (req, res) => {
   res.send("additional route");
-}
+};
 
 // Get single setudent by id
 const getSingleStudent = async (req, res) => {
   console.log("get single student by id");
   try {
-    const userId = new ObjectId(req.params.id); 
+    const userId = new ObjectId(req.params.id);
     const result = await mongodb
       .getDb()
       .db()
       .collection("students")
-      .findOne({_id: userId});
+      .findOne({ _id: userId });
 
     if (result) {
       console.log(`Getting student: ${result}`);
@@ -35,7 +35,7 @@ const getSingleStudent = async (req, res) => {
     res.status(500).json(error);
     console.log(error);
   }
-}
+};
 
 // Get all students
 const getAllStudents = async (req, res) => {
@@ -51,10 +51,8 @@ const getAllStudents = async (req, res) => {
   }
 };
 
-
-
 // Create contact
-const createStudent = async (req,res) => {
+const createStudent = async (req, res) => {
   console.log("create students");
   try {
     const student = {
@@ -70,16 +68,78 @@ const createStudent = async (req,res) => {
       .db()
       .collection("students")
       .insertOne(student);
-    if(response.acknowledged){
+    if (response.acknowledged) {
       res.status(201).json(response);
     } else {
-      res.status(500)
+      res
+        .status(500)
         .json(
           response.error || "Some error occurred while creating a student."
-        )
+        );
     }
   } catch (error) {
     res.status(500).json(error);
   }
-}
-module.exports = { awesomeFunction, tooeleTech, getAllStudents, additionalRoute, getSingleStudent, createStudent };
+};
+
+// Update one student
+const updateStudent = async (req, res) => {
+  try {
+    const userId = new ObjectId(req.params.id);
+    const student = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      age: req.body.age,
+      currentCollege: req.body.currentCollege,
+    };
+
+    const response = await mongodb
+      .getDb()
+      .db()
+      .collection("students")
+      .replaceOne({ _id: userId }, student);
+    if (response.acknowledged) {
+      res.status(204).json(response);
+    } else {
+      res
+        .status(500)
+        .json(response.error || "Some error occured updating the student.");
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+// Delete a student 😈
+const deleteStudent = async (req, res) => {
+  try {
+    const userId = new ObjectId(req.params.id);
+    const response = await mongodb
+      .getDb()
+      .db()
+      .collection("students")
+      .deleteOne({ _id: userId }, true);
+    console.log(response);
+    if (response.acknowledged) {
+      res.status(200).send(response);
+    } else {
+      res
+        .status(500)
+        .json(response.error || "Some error occurred deleting a student.");
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+module.exports = {
+  awesomeFunction,
+  tooeleTech,
+  getAllStudents,
+  additionalRoute,
+  getSingleStudent,
+  createStudent,
+  updateStudent,
+  deleteStudent,
+};
