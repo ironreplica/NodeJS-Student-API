@@ -5,7 +5,7 @@
     "description": "Api for showing students data.",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "nodejs-student-api-1.onrender.com",
   "basePath": "/",
   "schemes": [
     "http"
