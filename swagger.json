@@ -8,7 +8,7 @@
   "host": "nodejs-student-api-1.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
