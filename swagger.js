@@ -7,7 +7,7 @@ const doc = {
     },
     host: "nodejs-student-api-1.onrender.com",
     // host: "localhost:3000",
-    schemes: ["http"],
+    schemes: ["https"],
 };
 
 const outputfile = "./swagger.json";
