@@ -5,10 +5,10 @@
     "description": "Api for showing students data.",
     "version": "1.0.0"
   },
-  "host": "node-routes-xs4z.onrenderer.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/": {
