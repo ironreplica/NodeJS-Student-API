@@ -5,7 +5,7 @@ const doc = {
         title: "My student API",
         description: "Api for showing students data.",
     },
-    host: "node-routes-xs4z.onrenderer.com",
+    host: "nodejs-student-api-1.onrender.com",
     // host: "localhost:3000",
     schemes: ["http"],
 };
